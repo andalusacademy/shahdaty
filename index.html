@@ -188,7 +188,7 @@
 <body class="selection:bg-primary/20 selection:text-primary bg-surface transition-colors duration-300">
 <!-- Super Refresh Alert Bar -->
 <div class="w-full bg-primary text-white py-2 px-margin-desktop flex justify-center items-center font-label-lg text-label-lg z-[100] relative">
-<span class="flex items-center gap-2 font-bold text-center">
+<span class="flex items-center gap-2 font-bold text-center" id="alert-text">
 <span class="material-symbols-outlined text-[18px]">verified</span>
         SUPER REFRESH 2024: نظام التوثيق اللامركزي الجديد متاح الآن بكامل ميزاته الأمنية
     </span>
@@ -199,10 +199,10 @@
 <div class="flex items-center gap-8">
 <a class="font-headline-md text-headline-md font-bold text-primary tracking-tight flex items-center gap-2" href="#"><img alt="شهادتي العلمية" class="h-10 w-auto rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiKvtjxCR1t6gmyJB0SM5UlRHElyCOg54mqX1iBtbSezvSeEAI5nVPGBmhlcFfORVUJpfKVSOGRH39COcJJXVeW83QqqVhfehNxluSpRZ99hsypIBmUBx_2A5HZFu_0RyjPZ9Tfpk3xSqeJE9GigUFJEjsu-gk5WtiROx9TuFUNkmXhzYfzTSkRKO9SXB_HxUJkL2ue_8FvbjMbojX2VpShs9bKMOHOkWg9H9LDWIzOS0VIDraQr99LsAesGANRI8JeSPMwI5rT_o_"/><span class="">شهادتي العلمية</span></a>
 <div class="hidden lg:flex items-center gap-8">
-<a class="text-primary border-b-2 border-primary pb-1 font-label-lg text-label-lg" href="#">الرئيسية</a>
-<a class="text-on-surface-variant hover:text-primary transition-colors font-label-lg text-label-lg" href="#">الخدمات</a>
-<a class="text-on-surface-variant hover:text-primary transition-colors font-label-lg text-label-lg" href="#">المؤسسات</a>
-<a class="text-on-surface-variant hover:text-primary transition-colors font-label-lg text-label-lg" href="#">الأسئلة الشائعة</a>
+<a id="nav-home" class="text-primary border-b-2 border-primary pb-1 font-label-lg text-label-lg" href="#">الرئيسية</a>
+<a id="nav-services" class="text-on-surface-variant hover:text-primary transition-colors font-label-lg text-label-lg" href="#">الخدمات</a>
+<a id="nav-institutions" class="text-on-surface-variant hover:text-primary transition-colors font-label-lg text-label-lg" href="#">المؤسسات</a>
+<a id="nav-faq" class="text-on-surface-variant hover:text-primary transition-colors font-label-lg text-label-lg" href="#">الأسئلة الشائعة</a>
 </div>
 </div>
 <div class="flex items-center gap-2 md:gap-4">
@@ -242,11 +242,11 @@
 </span>
 <span class="text-primary font-label-md text-label-md tracking-wide">نظام التشفير اللامركزي نشط 24/7</span>
 </div>
-<h1 class="font-headline-lg md:text-[72px] md:leading-[1] mb-6 font-black tracking-tighter text-on-surface">
+<h1 id="hero-heading" class="font-headline-lg md:text-[72px] md:leading-[1] mb-6 font-black tracking-tighter text-on-surface">
                     وثق إنجازاتك <br/><span class="text-primary">بأمان عالمي</span>
 </h1>
-<p class="font-body-lg text-body-lg text-on-surface-variant mb-12 max-w-[680px] mx-auto leading-relaxed opacity-90">
-                    بوابة الطلاب والمهنيين للتحقق من الشهادات، إدارتها في محفظة رقمية آمنة، ومشاركتها مع جهات التوظيف بضغطة زر.
+<p id="hero-desc" class="font-body-lg text-body-lg text-on-surface-variant mb-12 max-w-[680px] mx-auto leading-relaxed opacity-90">
+                    بوابة الطلاب والمهنيين للتحقق من الشهادات، إدارتها في محفظة رقمزية آمنة، ومشاركتها مع جهات التوظيف بضغطة زر.
                 </p>
 <!-- Individual Search Container -->
 <div class="w-full max-w-3xl mx-auto group relative">
@@ -278,20 +278,20 @@
 </div>
 <div class="context-view hidden" id="institutions-content">
 <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-secondary-container/20 border border-secondary/20 mb-8 backdrop-blur-sm">
-<span class="text-primary font-label-md text-label-md tracking-wide">حلول مؤسسية متقدمة</span>
+<span id="institutions-tag" class="text-primary font-label-md text-label-md tracking-wide">حلول مؤسسية متقدمة</span>
 </div>
-<h1 class="font-headline-lg md:text-[72px] md:leading-[1] mb-6 font-black tracking-tighter text-on-surface">
+<h1 id="institutions-heading" class="font-headline-lg md:text-[72px] md:leading-[1] mb-6 font-black tracking-tighter text-on-surface">
                     منصة الاعتماد <br/><span class="text-primary">للمؤسسات الذكية</span>
 </h1>
-<p class="font-body-lg text-body-lg text-on-surface-variant mb-12 max-w-[680px] mx-auto leading-relaxed opacity-90">
+<p id="institutions-desc" class="font-body-lg text-body-lg text-on-surface-variant mb-12 max-w-[680px] mx-auto leading-relaxed opacity-90">
                     أصدر، أدر، ووثق الآلاف من الشهادات والاعتمادات الرسمية عبر واجهة برمجية موحدة وسجلات بلوكشين غير قابلة للتلاعب.
                 </p>
 <div class="flex flex-col sm:flex-row gap-4 justify-center">
-<button type="button" onclick="window.location.href='admin.html'" class="bg-primary text-white px-10 py-5 rounded-xl font-black text-headline-sm hover:brightness-110 active:scale-95 transition-all shadow-xl flex items-center justify-center gap-3">
+<button id="register-btn" class="bg-primary text-white px-10 py-5 rounded-xl font-black text-headline-sm hover:brightness-110 active:scale-95 transition-all shadow-xl flex items-center justify-center gap-3" type="button" onclick="window.location.href='admin.html'">
 <span class="material-symbols-outlined">add_business</span>
                         تسجيل مؤسسة جديدة
                     </button>
-<button class="bg-surface-container-high border border-outline-variant text-on-surface px-10 py-5 rounded-xl font-bold text-headline-sm hover:bg-surface-container transition-all flex items-center justify-center gap-3">
+<button id="api-btn" class="bg-surface-container-high border border-outline-variant text-on-surface px-10 py-5 rounded-xl font-bold text-headline-sm hover:bg-surface-container transition-all flex items-center justify-center gap-3">
 <span class="material-symbols-outlined">api</span>
                         توثيق API للمطورين
                     </button>
@@ -610,16 +610,73 @@
     document.addEventListener('DOMContentLoaded', () => {
         // Lang Toggler (Visual only)
         const langToggle = document.getElementById('lang-toggle');
+        const i18n = {
+            ar: {
+                title: 'شهادتي العلمية | بوابة الاعتماد الموحد',
+                alert: 'SUPER REFRESH 2024: نظام التوثيق اللامركزي الجديد متاح الآن بكامل ميزاته الأمنية',
+                navHome: 'الرئيسية',
+                navServices: 'الخدمات',
+                navInstitutions: 'المؤسسات',
+                navFaq: 'الأسئلة الشائعة',
+                heroHeading: 'وثق إنجازاتك <br/><span class="text-primary">بأمان عالمي</span>',
+                heroDesc: 'بوابة الطلاب والمهنيين للتحقق من الشهادات، إدارتها في محفظة رقمية آمنة، ومشاركتها مع جهات التوظيف بضغطة زر.',
+                certificatePlaceholder: 'أدخل رقم الشهادة أو رمز التحقق (مثال: VC-2024-88392)',
+                verifyBtn: 'تحقق الآن',
+                institutionsTag: 'حلول مؤسسية متقدمة',
+                institutionsHeading: 'منصة الاعتماد <br/><span class="text-primary">للمؤسسات الذكية</span>',
+                institutionsDesc: 'أصدر، أدر، ووثق الآلاف من الشهادات والاعتمادات الرسمية عبر واجهة برمجية موحدة وسجلات بلوكشين غير قابلة للتلاعب.',
+                registerBtn: 'تسجيل مؤسسة جديدة',
+                apiBtn: 'توثيق API للمطورين',
+            },
+            en: {
+                title: 'My Certificate | Unified Accreditation Portal',
+                alert: 'SUPER REFRESH 2024: The new decentralized verification system is now available with full security features',
+                navHome: 'Home',
+                navServices: 'Services',
+                navInstitutions: 'Institutions',
+                navFaq: 'FAQ',
+                heroHeading: 'Verify Your Achievements<br/><span class="text-primary">Securely Worldwide</span>',
+                heroDesc: 'The student and professional portal for certificate verification, secure digital management, and sharing with employers at the tap of a button.',
+                certificatePlaceholder: 'Enter certificate number or verification code (e.g. VC-2024-88392)',
+                verifyBtn: 'Verify Now',
+                institutionsTag: 'Advanced Institutional Solutions',
+                institutionsHeading: 'Accreditation Platform<br/><span class="text-primary">for Smart Institutions</span>',
+                institutionsDesc: 'Issue, manage, and certify thousands of official credentials with a unified API and tamper-proof blockchain records.',
+                registerBtn: 'Register New Institution',
+                apiBtn: 'Developer API Documentation',
+            }
+        };
+
+        const translate = (lang) => {
+            document.title = i18n[lang].title;
+            document.getElementById('alert-text').innerHTML = i18n[lang].alert;
+            document.getElementById('nav-home').innerText = i18n[lang].navHome;
+            document.getElementById('nav-services').innerText = i18n[lang].navServices;
+            document.getElementById('nav-institutions').innerText = i18n[lang].navInstitutions;
+            document.getElementById('nav-faq').innerText = i18n[lang].navFaq;
+            document.getElementById('hero-heading').innerHTML = i18n[lang].heroHeading;
+            document.getElementById('hero-desc').innerText = i18n[lang].heroDesc;
+            document.getElementById('certificate-input').placeholder = i18n[lang].certificatePlaceholder;
+            document.getElementById('verify-btn').innerText = i18n[lang].verifyBtn;
+            document.getElementById('institutions-tag').innerText = i18n[lang].institutionsTag;
+            document.getElementById('institutions-heading').innerHTML = i18n[lang].institutionsHeading;
+            document.getElementById('institutions-desc').innerText = i18n[lang].institutionsDesc;
+            document.getElementById('register-btn').innerText = i18n[lang].registerBtn;
+            document.getElementById('api-btn').innerText = i18n[lang].apiBtn;
+        };
+
         langToggle.addEventListener('click', () => {
             const currentDir = document.documentElement.getAttribute('dir');
             if (currentDir === 'rtl') {
                 document.documentElement.setAttribute('dir', 'ltr');
                 document.documentElement.setAttribute('lang', 'en');
-                langToggle.innerText = 'AR';
+                langToggle.innerHTML = 'AR';
+                translate('en');
             } else {
                 document.documentElement.setAttribute('dir', 'rtl');
                 document.documentElement.setAttribute('lang', 'ar');
-                langToggle.innerText = 'EN';
+                langToggle.innerHTML = 'EN';
+                translate('ar');
             }
         });
 
