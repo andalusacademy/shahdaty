@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+
+<html class="light" dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>شهادتي العلمية | بوابة الاعتماد الموحد</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;900&amp;family=Tajawal:wght@400;500;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Custom Tailwind Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "deep-midnight": "#0C2340",
+                "inverse-primary": "#0077B6",
+                "on-primary-fixed-variant": "#023E8A",
+                "surface-container": "#F8FBFE",
+                "secondary": "#48CAE4",
+                "on-tertiary": "#ffffff",
+                "primary-fixed": "#CAF0F8",
+                "tertiary-container": "#E0F2F1",
+                "inverse-surface": "#1B263B",
+                "on-secondary": "#ffffff",
+                "error-container": "#FFEBEE",
+                "secondary-container": "#90E0EF",
+                "on-error": "#B71C1C",
+                "surface-dim": "#F0F4F8",
+                "primary-fixed-dim": "#ADE8F4",
+                "outline-variant": "#E1E8ED",
+                "on-primary-container": "#03045E",
+                "secondary-fixed-dim": "#48CAE4",
+                "tertiary-fixed": "#00B4D8",
+                "primary": "#0077B6",
+                "surface-tint": "#0077B6",
+                "secondary-fixed": "#0096C7",
+                "surface-container-high": "#EDF2F7",
+                "surface-bright": "#FFFFFF",
+                "surface-container-low": "#FAFCFF",
+                "on-primary": "#FFFFFF",
+                "on-secondary-fixed-variant": "#023E8A",
+                "on-tertiary-fixed-variant": "#03045E",
+                "tertiary": "#00B4D8",
+                "on-background": "#1A365D",
+                "surface-variant": "#EBF8FF",
+                "surface-container-lowest": "#FFFFFF",
+                "tertiary-fixed-dim": "#00B4D8",
+                "surface-container-highest": "#E2E8F0",
+                "on-error-container": "#B71C1C",
+                "inverse-on-surface": "#FFFFFF",
+                "surface": "#FFFFFF",
+                "teal-accent": "#0077B6",
+                "on-primary-fixed": "#03045E",
+                "success-mint": "#F0FAF9",
+                "surface-white": "#FFFFFF",
+                "border-slate": "#E2E8F0",
+                "on-secondary-container": "#03045E",
+                "on-tertiary-container": "#03045E",
+                "error": "#E53935",
+                "on-surface-variant": "#4A5568",
+                "outline": "#A0AEC0",
+                "on-secondary-fixed": "#023E8A",
+                "on-surface": "#2D3748",
+                "primary-container": "#CAF0F8",
+                "neon-refresh": "#0077B6",
+                "danger-red": "#E74C3C",
+                "background": "#FFFFFF",
+                "on-tertiary-fixed": "#023E8A"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "margin-desktop": "32px",
+                "section-gap-lg": "48px",
+                "section-gap-sm": "28px",
+                "margin-mobile": "16px",
+                "card-padding": "26px",
+                "gutter": "16px",
+                "container-max": "1100px",
+                "element-gap": "14px"
+            },
+            "fontFamily": {
+                "label-md": ["Cairo"],
+                "headline-lg": ["Cairo"],
+                "stat-display": ["Tajawal"],
+                "label-lg": ["Cairo"],
+                "headline-md": ["Cairo"],
+                "headline-lg-mobile": ["Cairo"],
+                "body-sm": ["Cairo"],
+                "body-lg": ["Cairo"],
+                "headline-sm": ["Cairo"],
+                "body-md": ["Cairo"]
+            },
+            "fontSize": {
+                "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "700"}],
+                "headline-lg": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                "stat-display": ["28px", {"lineHeight": "34px", "fontWeight": "900"}],
+                "label-lg": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "700"}],
+                "headline-lg-mobile": ["21px", {"lineHeight": "28px", "fontWeight": "700"}],
+                "body-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "500"}],
+                "headline-sm": ["18px", {"lineHeight": "24px", "fontWeight": "700"}],
+                "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            @apply bg-surface text-on-surface font-['Cairo'];
+            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .hero-grid-overlay {
+            background-image: 
+                linear-gradient(to right, rgba(0, 119, 182, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 119, 182, 0.05) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+
+        .v3-hero-glow {
+            background: radial-gradient(circle at 50% 50%, rgba(173, 232, 244, 0.3) 0%, transparent 70%);
+        }
+
+        .scanning-line {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #0077B6, transparent);
+            top: 0;
+            animation: scan 3s linear infinite;
+            z-index: 20;
+            opacity: 0;
+        }
+
+        .group:focus-within .scanning-line {
+            opacity: 1;
+        }
+
+        @keyframes scan {
+            0% { top: 0%; }
+            100% { top: 100%; }
+        }
+
+        .marquee {
+            white-space: nowrap;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 30s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(50%); }
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .transition-soft {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .verified-reveal {
+            animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="selection:bg-primary/20 selection:text-primary bg-surface transition-colors duration-300">
+<!-- Super Refresh Alert Bar -->
+<div class="w-full bg-primary text-white py-2 px-margin-desktop flex justify-center items-center font-label-lg text-label-lg z-[100] relative">
+<span class="flex items-center gap-2 font-bold text-center">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+        SUPER REFRESH 2024: نظام التوثيق اللامركزي الجديد متاح الآن بكامل ميزاته الأمنية
+    </span>
+</div>
+<!-- TopAppBar -->
+<header class="bg-surface/80 backdrop-blur-md sticky top-0 z-50 border-b border-outline-variant/50 h-20">
+<nav class="flex justify-between items-center w-full px-margin-desktop max-w-container-max mx-auto h-full">
+<div class="flex items-center gap-8">
+<a class="font-headline-md text-headline-md font-bold text-primary tracking-tight flex items-center gap-2" href="#"><img alt="شهادتي العلمية" class="h-10 w-auto rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiKvtjxCR1t6gmyJB0SM5UlRHElyCOg54mqX1iBtbSezvSeEAI5nVPGBmhlcFfORVUJpfKVSOGRH39COcJJXVeW83QqqVhfehNxluSpRZ99hsypIBmUBx_2A5HZFu_0RyjPZ9Tfpk3xSqeJE9GigUFJEjsu-gk5WtiROx9TuFUNkmXhzYfzTSkRKO9SXB_HxUJkL2ue_8FvbjMbojX2VpShs9bKMOHOkWg9H9LDWIzOS0VIDraQr99LsAesGANRI8JeSPMwI5rT_o_"/><span class="">شهادتي العلمية</span></a>
+<div class="hidden lg:flex items-center gap-8">
+<a class="text-primary border-b-2 border-primary pb-1 font-label-lg text-label-lg" href="#">الرئيسية</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-lg text-label-lg" href="#">الخدمات</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-lg text-label-lg" href="#">المؤسسات</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-lg text-label-lg" href="#">الأسئلة الشائعة</a>
+</div>
+</div>
+<div class="flex items-center gap-2 md:gap-4">
+<!-- Language Switcher -->
+<button class="px-3 py-1.5 rounded-lg border border-outline-variant hover:bg-surface-container-high transition-colors text-label-md font-bold flex items-center gap-1 text-on-surface" id="lang-toggle">
+<span class="material-symbols-outlined text-[18px]">language</span>
+                EN
+            </button>
+<button class="hidden md:block text-on-surface hover:text-primary font-label-lg text-label-lg transition-colors px-2">تسجيل الدخول</button>
+<button class="bg-primary text-white px-4 md:px-6 py-2.5 rounded-lg font-label-lg text-label-lg hover:bg-primary-fixed-dim hover:text-primary transition-all flex items-center gap-2 shadow-lg shadow-primary/10">
+<span class="material-symbols-outlined hidden sm:inline">account_balance</span>
+                بوابة المؤسسات
+            </button>
+</div>
+</nav>
+</header>
+<main>
+<!-- Hero Section with Scanning Effect -->
+<section class="relative min-h-[700px] flex flex-col items-center justify-center pt-section-gap-lg pb-section-gap-lg px-margin-mobile md:px-0 bg-surface">
+<div class="absolute inset-0 hero-grid-overlay opacity-50"></div>
+<div class="absolute inset-0 v3-hero-glow pointer-events-none"></div>
+<div class="relative z-10 text-center max-w-[900px] mx-auto px-4">
+<!-- Segmented Control Context Switcher -->
+<div class="inline-flex p-1 bg-surface-container-high border border-outline-variant/50 rounded-2xl mb-12 shadow-sm">
+<button class="px-8 py-2.5 rounded-xl font-label-lg text-label-lg transition-all duration-300 bg-primary text-white shadow-md" id="tab-individuals" onclick="switchContext('individuals')">
+                    الأفراد والطلاب
+                </button>
+<button class="px-8 py-2.5 rounded-xl font-label-lg text-label-lg transition-all duration-300 text-on-surface-variant hover:text-on-surface" id="tab-institutions" onclick="switchContext('institutions')">
+                    المؤسسات والشركات
+                </button>
+</div>
+<div class="context-view" id="individuals-content">
+<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-container border border-primary/20 mb-8 backdrop-blur-sm">
+<span class="flex h-2 w-2 relative">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+</span>
+<span class="text-primary font-label-md text-label-md tracking-wide">نظام التشفير اللامركزي نشط 24/7</span>
+</div>
+<h1 class="font-headline-lg md:text-[72px] md:leading-[1] mb-6 font-black tracking-tighter text-on-surface">
+                    وثق إنجازاتك <br/><span class="text-primary">بأمان عالمي</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-12 max-w-[680px] mx-auto leading-relaxed opacity-90">
+                    بوابة الطلاب والمهنيين للتحقق من الشهادات، إدارتها في محفظة رقمية آمنة، ومشاركتها مع جهات التوظيف بضغطة زر.
+                </p>
+<!-- Individual Search Container -->
+<div class="w-full max-w-3xl mx-auto group relative">
+<div class="absolute -inset-1 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-2xl blur opacity-25 group-focus-within:opacity-100 transition duration-1000 group-focus-within:duration-200"></div>
+<div class="relative bg-surface-white rounded-2xl p-2 border border-outline-variant group-focus-within:border-primary group-focus-within:ring-4 group-focus-within:ring-primary/5 transition-all duration-500 shadow-xl overflow-hidden">
+<div class="scanning-line"></div>
+<div class="flex flex-col md:flex-row items-center gap-2 px-2">
+<div class="flex items-center flex-1 w-full gap-3 px-4 py-3 md:py-0">
+<span class="material-symbols-outlined text-outline group-focus-within:text-primary transition-colors text-[28px]">qr_code_scanner</span>
+<input class="w-full bg-transparent border-none focus:ring-0 text-on-surface font-headline-sm text-headline-sm placeholder:text-outline py-4" dir="rtl" id="certificate-input" placeholder="أدخل رقم الشهادة أو رمز التحقق (مثال: VC-2024-88392)" type="text"/>
+</div>
+<button class="w-full md:w-auto bg-primary text-white font-black px-10 py-5 rounded-xl flex items-center justify-center gap-3 hover:bg-primary-fixed-dim hover:text-primary active:scale-95 transition-all shadow-xl" id="verify-btn">
+<span class="material-symbols-outlined font-black">verified</span>
+                                تحقق الآن
+                            </button>
+</div>
+</div>
+<div class="flex flex-wrap gap-6 mt-6 justify-center">
+<span class="text-body-sm text-on-surface-variant flex items-center gap-2 font-medium">
+<span class="material-symbols-outlined text-[18px] text-primary">account_balance_wallet</span>
+                            محفظة رقمية آمنة
+                        </span>
+<span class="text-body-sm text-on-surface-variant flex items-center gap-2 font-medium">
+<span class="material-symbols-outlined text-[18px] text-primary">security</span>
+                            تشفير AES-256 بت
+                        </span>
+</div>
+</div>
+</div>
+<div class="context-view hidden" id="institutions-content">
+<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-secondary-container/20 border border-secondary/20 mb-8 backdrop-blur-sm">
+<span class="text-primary font-label-md text-label-md tracking-wide">حلول مؤسسية متقدمة</span>
+</div>
+<h1 class="font-headline-lg md:text-[72px] md:leading-[1] mb-6 font-black tracking-tighter text-on-surface">
+                    منصة الاعتماد <br/><span class="text-primary">للمؤسسات الذكية</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-12 max-w-[680px] mx-auto leading-relaxed opacity-90">
+                    أصدر، أدر، ووثق الآلاف من الشهادات والاعتمادات الرسمية عبر واجهة برمجية موحدة وسجلات بلوكشين غير قابلة للتلاعب.
+                </p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center">
+<button class="bg-primary text-white px-10 py-5 rounded-xl font-black text-headline-sm hover:brightness-110 active:scale-95 transition-all shadow-xl flex items-center justify-center gap-3">
+<span class="material-symbols-outlined">add_business</span>
+                        تسجيل مؤسسة جديدة
+                    </button>
+<button class="bg-surface-container-high border border-outline-variant text-on-surface px-10 py-5 rounded-xl font-bold text-headline-sm hover:bg-surface-container transition-all flex items-center justify-center gap-3">
+<span class="material-symbols-outlined">api</span>
+                        توثيق API للمطورين
+                    </button>
+</div>
+</div>
+<!-- Verification Result View (Shared) -->
+<div class="mt-12 hidden verified-reveal" id="result-view">
+<div class="max-w-2xl mx-auto bg-surface-white border-2 border-primary/20 rounded-2xl overflow-hidden shadow-2xl">
+<div class="bg-primary/5 py-4 px-6 border-b border-primary/10 flex justify-between items-center">
+<div class="flex items-center gap-3">
+<div class="bg-primary p-1 rounded-full">
+<span class="material-symbols-outlined text-white text-[20px] font-bold">check</span>
+</div>
+<span class="text-primary font-bold">تم التحقق بنجاح - مستند أصلي</span>
+</div>
+<span class="text-on-surface-variant text-body-sm">بتاريخ: 12 أكتوبر 2024</span>
+</div>
+<div class="p-8 text-right space-y-6">
+<div class="grid grid-cols-2 gap-8">
+<div>
+<label class="block text-outline text-label-md mb-1">صاحب الشهادة</label>
+<div class="text-on-surface font-bold text-headline-sm">محمد أحمد العتيبي</div>
+</div>
+<div>
+<label class="block text-outline text-label-md mb-1">المؤسسة المانحة</label>
+<div class="text-on-surface font-bold text-headline-sm">جامعة الملك سعود</div>
+</div>
+</div>
+<div class="bg-surface-container-low p-4 rounded-xl border border-outline-variant font-mono text-[11px] break-all text-left">
+<div class="text-on-surface-variant mb-2 font-sans text-right">Blockchain Hash (SHA-256)</div>
+<span class="text-primary font-bold opacity-80">0x7f83b1657ff1fc53b92dc18148a1d65dfc2d4b1fa3d677284addd200126d9069</span>
+</div>
+<div class="flex gap-4">
+<button class="flex-1 bg-surface-container-highest text-on-surface font-bold py-3 rounded-lg border border-outline-variant hover:bg-surface-container transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">description</span>
+                                عرض التفاصيل
+                            </button>
+<button class="flex-1 bg-primary text-white font-bold py-3 rounded-lg hover:bg-primary-fixed-dim hover:text-primary transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">download</span>
+                                تحميل نسخة PDF آمنة
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Trust Signals Section -->
+<section class="bg-surface-container-low py-20 border-y border-outline-variant">
+<div class="max-w-container-max mx-auto px-margin-desktop">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-12">
+<div class="text-center group">
+<div class="font-stat-display text-[48px] text-primary mb-2 group-hover:scale-110 transition-transform">1.2M+</div>
+<div class="font-label-lg text-label-lg text-on-surface-variant uppercase tracking-widest">شهادة موثقة</div>
+<div class="h-1 w-8 bg-secondary mx-auto mt-4 rounded-full opacity-50"></div>
+</div>
+<div class="text-center group">
+<div class="font-stat-display text-[48px] text-primary mb-2 group-hover:scale-110 transition-transform">450+</div>
+<div class="font-label-lg text-label-lg text-on-surface-variant uppercase tracking-widest">مؤسسة تعليمية</div>
+<div class="h-1 w-8 bg-secondary mx-auto mt-4 rounded-full opacity-50"></div>
+</div>
+<div class="text-center group">
+<div class="font-stat-display text-[48px] text-primary mb-2 group-hover:scale-110 transition-transform">99.9%</div>
+<div class="font-label-lg text-label-lg text-on-surface-variant uppercase tracking-widest">دقة التحقق</div>
+<div class="h-1 w-8 bg-secondary mx-auto mt-4 rounded-full opacity-50"></div>
+</div>
+<div class="text-center group">
+<div class="font-stat-display text-[48px] text-primary mb-2 group-hover:scale-110 transition-transform">24/7</div>
+<div class="font-label-lg text-label-lg text-on-surface-variant uppercase tracking-widest">مراقبة أمنية</div>
+<div class="h-1 w-8 bg-secondary mx-auto mt-4 rounded-full opacity-50"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Institutional Partners Scrolling Marquee -->
+<section class="py-16 bg-white overflow-hidden">
+<div class="max-w-container-max mx-auto px-margin-desktop mb-10 text-center">
+<h2 class="text-on-surface-variant font-label-lg tracking-widest mb-4 uppercase">شركاء الثقة والاعتماد المؤسسي</h2>
+<div class="h-px bg-gradient-to-r from-transparent via-outline-variant to-transparent w-full"></div>
+</div>
+<div class="marquee">
+<div class="marquee-content flex gap-20 items-center opacity-40 hover:opacity-100 transition-opacity">
+<div class="flex items-center gap-3 min-w-[200px]">
+<span class="material-symbols-outlined text-[40px] text-primary">account_balance</span>
+<span class="font-bold text-headline-sm text-on-surface">جامعة الملك سعود</span>
+</div>
+<div class="flex items-center gap-3 min-w-[200px]">
+<span class="material-symbols-outlined text-[40px] text-primary">account_balance</span>
+<span class="font-bold text-headline-sm text-on-surface">جامعة الشارقة</span>
+</div>
+<div class="flex items-center gap-3 min-w-[200px]">
+<span class="material-symbols-outlined text-[40px] text-primary">account_balance</span>
+<span class="font-bold text-headline-sm text-on-surface">الأكاديمية العربية</span>
+</div>
+<div class="flex items-center gap-3 min-w-[200px]">
+<span class="material-symbols-outlined text-[40px] text-primary">account_balance</span>
+<span class="font-bold text-headline-sm text-on-surface">جامعة القاهرة</span>
+</div>
+<div class="flex items-center gap-3 min-w-[200px]">
+<span class="material-symbols-outlined text-[40px] text-primary">account_balance</span>
+<span class="font-bold text-headline-sm text-on-surface">جامعة الملك فيصل</span>
+</div>
+<div class="flex items-center gap-3 min-w-[200px]">
+<span class="material-symbols-outlined text-[40px] text-primary">account_balance</span>
+<span class="font-bold text-headline-sm text-on-surface">جامعة الكويت</span>
+</div>
+<!-- Duplicate for seamless loop -->
+<div class="flex items-center gap-3 min-w-[200px]">
+<span class="material-symbols-outlined text-[40px] text-primary">account_balance</span>
+<span class="font-bold text-headline-sm text-on-surface">جامعة الملك سعود</span>
+</div>
+<div class="flex items-center gap-3 min-w-[200px]">
+<span class="material-symbols-outlined text-[40px] text-primary">account_balance</span>
+<span class="font-bold text-headline-sm text-on-surface">جامعة الشارقة</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Features Bento Grid -->
+<section class="max-w-container-max mx-auto px-margin-desktop py-24">
+<div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+<div class="max-w-xl text-right">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-4">بنية تحتية أمنية متكاملة</h2>
+<p class="text-on-surface-variant font-body-lg">نجمع بين التكنولوجيا الحديثة وأعلى معايير الحماية لضمان نزاهة البيانات الأكاديمية في كل معاملة.</p>
+</div>
+<a class="text-primary font-label-lg flex items-center gap-2 group hover:underline" href="#">
+                استكشف تقنياتنا
+                <span class="material-symbols-outlined group-hover:translate-x-[-4px] transition-transform">arrow_left</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Blockchain Card -->
+<div class="md:col-span-2 bg-surface-container rounded-3xl p-10 border border-outline-variant relative overflow-hidden group">
+<div class="relative z-10 text-right">
+<div class="bg-primary-container w-16 h-16 rounded-2xl flex items-center justify-center mb-8 border border-primary/20">
+<span class="material-symbols-outlined text-primary text-[32px]">hub</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-4 text-on-surface">التوثيق بالبلوكشين</h3>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-[440px] leading-relaxed">تعتمد منصتنا على سجلات لامركزية غير قابلة للتغيير، مما يمنع أي محاولة للتلاعب بالبيانات أو تزوير الشهادات بعد صدورها.</p>
+</div>
+<div class="absolute top-10 left-10 opacity-5 group-hover:opacity-10 transition-opacity">
+<span class="material-symbols-outlined text-[240px] text-primary">database</span>
+</div>
+</div>
+<!-- Privacy Card -->
+<div class="bg-primary text-white rounded-3xl p-10 border border-primary/20 flex flex-col justify-between hover:bg-primary-fixed-dim hover:text-primary transition-colors text-right shadow-xl shadow-primary/10">
+<div>
+<div class="bg-white/20 w-16 h-16 rounded-2xl flex items-center justify-center mb-8 border border-white/30">
+<span class="material-symbols-outlined text-white group-hover:text-primary text-[32px]">lock</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-4">الخصوصية التامة</h3>
+<p class="font-body-md text-body-md opacity-90 leading-relaxed">نظامنا لا يقوم بتخزين بياناتك الشخصية، بل رموز تشفيرية (Hashes) فريدة للتحقق فقط.</p>
+</div>
+<div class="mt-8 flex gap-2 justify-end">
+<span class="text-[11px] font-bold bg-white/20 px-3 py-1 rounded-full">GDPR Compliant</span>
+<span class="text-[11px] font-bold bg-white/20 px-3 py-1 rounded-full">ISO 27001</span>
+</div>
+</div>
+<!-- API Connectivity -->
+<div class="bg-white rounded-3xl p-10 border border-outline-variant flex flex-col justify-between group text-right shadow-sm">
+<div>
+<span class="material-symbols-outlined text-secondary text-[40px] mb-6 group-hover:scale-110 transition-transform block">api</span>
+<h3 class="font-headline-sm text-headline-sm mb-3 text-on-surface">ربط المؤسسات الفوري</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">ربط تقني مباشر عبر API مخصص لسرعة التحقق ومعالجة الطلبات الجماعية للمؤسسات والشركات.</p>
+</div>
+</div>
+<!-- Global Recognition -->
+<div class="md:col-span-2 bg-surface-container-high border border-outline-variant rounded-3xl p-10 flex flex-col md:flex-row items-center gap-10 text-right">
+<div class="w-full md:w-1/3">
+<div class="aspect-square bg-white rounded-2xl border border-outline-variant flex items-center justify-center relative overflow-hidden shadow-inner">
+<span class="material-symbols-outlined text-[100px] text-primary/10">public</span>
+<span class="material-symbols-outlined text-[60px] text-primary absolute">verified_user</span>
+</div>
+</div>
+<div class="w-full md:w-2/3">
+<h3 class="font-headline-md text-headline-md mb-4 text-on-surface">اعتماد دولي ومحلي</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">منصة "شهادتي العلمية" هي الشريك التقني المعتمد لأكثر من 450 جامعة ومؤسسة حكومية حول العالم، مما يضمن قبول شهاداتك أينما كنت.</p>
+<div class="flex gap-4 justify-end">
+<div class="flex items-center gap-2 text-primary font-bold text-body-sm">
+<span class="material-symbols-outlined text-secondary text-[18px]">verified</span>
+                            وزارة التعليم
+                        </div>
+<div class="flex items-center gap-2 text-primary font-bold text-body-sm">
+<span class="material-symbols-outlined text-secondary text-[18px]">verified</span>
+                            الاعتماد الأكاديمي
+                        </div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Security Information Section -->
+<section class="bg-surface-container-low py-24 relative overflow-hidden border-t border-outline-variant">
+<div class="max-w-container-max mx-auto px-margin-desktop grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
+<div class="relative order-2 md:order-1">
+<div class="w-full h-[500px] rounded-[40px] shadow-2xl border border-outline-variant relative z-10 overflow-hidden" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCifdAkOblN3VIEO1xOKyHIgxcZo05Vewb-aB1d0PIjVfoqTLtFLlbkGLwgZGwGD-Tt6vAw7ykLt8H6KcBAEa7Hx_2lPEQgMD06S49XDYK7643nZfkrE8BuvMorK8cR0SwU6v88LimL1ksoP4AdoUBtzS36BhyV6W2lVCHio4Ia97bWJO_CUqa4f3AruH1hAlQ5BTNuOC-QUwX_0ph49h_OZtmi-DdVZclWtJoSpKp4NnFcvc2_4yBA95-GcWVnUxQaA9qRzl2LF5Kl'); background-size: cover; background-position: center;">
+<div class="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent opacity-40"></div>
+</div>
+<div class="absolute -bottom-10 -right-10 bg-white p-8 border border-outline-variant rounded-3xl shadow-2xl max-w-[280px] z-20 backdrop-blur-xl text-right">
+<div class="flex items-center gap-3 mb-4 justify-end">
+<div class="w-3 h-3 rounded-full bg-primary animate-pulse"></div>
+<span class="text-primary font-bold font-label-lg">أمان من المستوى العسكري</span>
+</div>
+<p class="text-on-surface-variant text-body-md leading-relaxed">تستخدم المنصة بروتوكولات تشفير لا يمكن اختراقها لضمان سيادة البيانات والخصوصية المطلقة لكل مستخدم.</p>
+</div>
+<div class="absolute -top-10 -left-10 w-40 h-40 bg-primary/5 rounded-full blur-[80px]"></div>
+</div>
+<div class="space-y-10 order-1 md:order-2 text-right">
+<div>
+<h2 class="font-headline-lg text-[40px] text-on-surface mb-6 leading-tight">سياسة الأمان والخصوصية <br/>المتطورة</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">نحن نؤمن بأن الثقة الرقمية هي حجر الأساس للتعليم الحديث. لذا، قمنا ببناء نظام يتجاوز معايير الامتثال التقليدية ليقدم حماية استباقية للبيانات.</p>
+</div>
+<div class="space-y-6">
+<div class="flex items-start gap-6 p-6 rounded-2xl bg-white border border-outline-variant hover:border-primary/40 transition-colors shadow-sm">
+<div class="bg-primary/5 p-3 rounded-xl">
+<span class="material-symbols-outlined text-primary">encrypted</span>
+</div>
+<div class="flex-1">
+<h4 class="font-headline-sm text-headline-sm mb-2 text-on-surface">تشفير البيانات الحساسة</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">يتم تشفير كافة البيانات المخزنة والمتبادلة باستخدام معيار AES-256 بت، وهو المعيار العالمي للأمان العسكري والبنكي.</p>
+</div>
+</div>
+<div class="flex items-start gap-6 p-6 rounded-2xl bg-white border border-outline-variant hover:border-primary/40 transition-colors shadow-sm">
+<div class="bg-primary/5 p-3 rounded-xl">
+<span class="material-symbols-outlined text-primary">fingerprint</span>
+</div>
+<div class="flex-1">
+<h4 class="font-headline-sm text-headline-sm mb-2 text-on-surface">سيادة الهوية الرقمية</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">البيانات ملك لصاحبها فقط. لا نبيع ولا نشارك البيانات مع أي أطراف ثالثة لأغراض تسويقية أو تحليلية دون إذن.</p>
+</div>
+</div>
+</div>
+<div class="pt-4 flex items-center gap-8 justify-end">
+<a class="inline-flex items-center gap-2 text-primary hover:text-secondary transition-colors font-label-lg text-label-lg font-bold" href="#">
+                        مركز الأمان والخصوصية
+                        <span class="material-symbols-outlined">arrow_left</span>
+</a>
+<div class="h-8 w-px bg-outline-variant"></div>
+<div class="flex gap-4 opacity-40">
+<span class="material-symbols-outlined text-primary">verified</span>
+<span class="material-symbols-outlined text-primary">shield</span>
+<span class="material-symbols-outlined text-primary">security</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-low border-t border-outline-variant w-full pt-20 pb-10 text-right">
+<div class="max-w-container-max mx-auto px-margin-desktop">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
+<div class="md:col-span-2 space-y-6">
+<a class="font-headline-md text-headline-md font-bold text-primary tracking-tight flex items-center gap-2 justify-end" href="#"><img alt="شهادتي العلمية" class="h-10 w-auto rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiKvtjxCR1t6gmyJB0SM5UlRHElyCOg54mqX1iBtbSezvSeEAI5nVPGBmhlcFfORVUJpfKVSOGRH39COcJJXVeW83QqqVhfehNxluSpRZ99hsypIBmUBx_2A5HZFu_0RyjPZ9Tfpk3xSqeJE9GigUFJEjsu-gk5WtiROx9TuFUNkmXhzYfzTSkRKO9SXB_HxUJkL2ue_8FvbjMbojX2VpShs9bKMOHOkWg9H9LDWIzOS0VIDraQr99LsAesGANRI8JeSPMwI5rT_o_"/><span class="">شهادتي العلمية</span></a>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-[400px] leading-relaxed mr-auto md:mr-0">
+                    نحن نسعى لبناء مستقبل تعليمي أكثر شفافية ومصداقية عبر توفير أدوات تقنية متطورة لتوثيق الإنجازات الأكاديمية والمهنية وحمايتها من التلاعب.
+                </p>
+<div class="flex gap-4 justify-end">
+<a class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all" href="#"><span class="material-symbols-outlined text-[20px]">share</span></a>
+<a class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all" href="#"><span class="material-symbols-outlined text-[20px]">alternate_email</span></a>
+<a class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all" href="#"><span class="material-symbols-outlined text-[20px]">public</span></a>
+</div>
+</div>
+<div class="space-y-6">
+<h4 class="font-label-lg text-label-lg text-on-surface font-bold uppercase tracking-widest">روابط سريعة</h4>
+<ul class="space-y-4">
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors text-body-md" href="#">منصة التحقق</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors text-body-md" href="#">بوابة المؤسسات</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors text-body-md" href="#">الأسئلة الشائعة</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors text-body-md" href="#">تواصل معنا</a></li>
+</ul>
+</div>
+<div class="space-y-6">
+<h4 class="font-label-lg text-label-lg text-on-surface font-bold uppercase tracking-widest">قانوني</h4>
+<ul class="space-y-4">
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors text-body-md" href="#">سياسة الخصوصية</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors text-body-md" href="#">شروط الخدمة</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors text-body-md" href="#">سياسة الكوكيز</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors text-body-md" href="#">الأمان الرقمي</a></li>
+</ul>
+</div>
+</div>
+<div class="pt-10 border-t border-outline-variant/50 flex flex-col md:flex-row justify-between items-center gap-6">
+<p class="font-body-sm text-body-sm text-on-surface-variant opacity-60">© 2024 شهادتي العلمية. جميع الحقوق محفوظة. نظام مدعوم بتقنيات البلوكشين.</p>
+<div class="flex items-center gap-6">
+<span class="text-[10px] text-on-surface-variant border border-outline-variant px-2 py-1 rounded">V 2.4.0-STABLE</span>
+<div class="flex gap-2">
+<div class="w-6 h-4 bg-primary/10 rounded"></div>
+<div class="w-6 h-4 bg-primary/10 rounded"></div>
+<div class="w-6 h-4 bg-primary/10 rounded"></div>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<!-- Interactive Simulation Scripts -->
+<script>
+    function switchContext(context) {
+        const indTab = document.getElementById('tab-individuals');
+        const instTab = document.getElementById('tab-institutions');
+        const indContent = document.getElementById('individuals-content');
+        const instContent = document.getElementById('institutions-content');
+
+        if (context === 'individuals') {
+            indTab.className = "px-8 py-2.5 rounded-xl font-label-lg text-label-lg transition-all duration-300 bg-primary text-white shadow-md";
+            instTab.className = "px-8 py-2.5 rounded-xl font-label-lg text-label-lg transition-all duration-300 text-on-surface-variant hover:text-on-surface";
+            indContent.classList.remove('hidden');
+            instContent.classList.add('hidden');
+        } else {
+            instTab.className = "px-8 py-2.5 rounded-xl font-label-lg text-label-lg transition-all duration-300 bg-primary text-white shadow-md";
+            indTab.className = "px-8 py-2.5 rounded-xl font-label-lg text-label-lg transition-all duration-300 text-on-surface-variant hover:text-on-surface";
+            instContent.classList.remove('hidden');
+            indContent.classList.add('hidden');
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        // Lang Toggler (Visual only)
+        const langToggle = document.getElementById('lang-toggle');
+        langToggle.addEventListener('click', () => {
+            const currentDir = document.documentElement.getAttribute('dir');
+            if (currentDir === 'rtl') {
+                document.documentElement.setAttribute('dir', 'ltr');
+                document.documentElement.setAttribute('lang', 'en');
+                langToggle.innerText = 'AR';
+            } else {
+                document.documentElement.setAttribute('dir', 'rtl');
+                document.documentElement.setAttribute('lang', 'ar');
+                langToggle.innerText = 'EN';
+            }
+        });
+
+        const input = document.getElementById('certificate-input');
+        const verifyBtn = document.getElementById('verify-btn');
+        const resultView = document.getElementById('result-view');
+        
+        // Simulate verification process
+        verifyBtn?.addEventListener('click', () => {
+            if (input.value.length > 5) {
+                verifyBtn.innerHTML = '<span class="animate-spin material-symbols-outlined">refresh</span> جاري التحقق...';
+                verifyBtn.disabled = true;
+                
+                setTimeout(() => {
+                    verifyBtn.innerHTML = '<span class="material-symbols-outlined font-black">verified</span> تحقق الآن';
+                    verifyBtn.disabled = false;
+                    resultView.classList.remove('hidden');
+                    resultView.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 1800);
+            } else {
+                input.focus();
+                input.classList.add('ring-2', 'ring-error');
+                setTimeout(() => input.classList.remove('ring-2', 'ring-error'), 1000);
+            }
+        });
+    });
+</script>
+</body></html>
