@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="light">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>شهادتي العلمية | التحقق من الشهادات</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;900&family=Tajawal:wght@700;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config = {
+  theme: { extend: {
+    colors: {
+      "primary":"#00aeef","primary-dark":"#0077b6","primary-container":"#e0f5fe",
+      "secondary":"#48CAE4","surface":"#f7f9fb","surface-card":"#ffffff",
+      "surface-container":"#F8FBFE","surface-high":"#EDF2F7","surface-low":"#FAFCFF",
+      "on-surface":"#0f172a","on-surface-variant":"#64748b",
+      "outline":"#94a3b8","outline-variant":"#e2e8f0",
+      "gold":"#C8973A","gold-light":"#E8B55A","gold-pale":"#FDF6E8",
+      "navy":"#0B1F3A","error":"#ef4444","success":"#0E7C6B",
+    }
+  }}
+}
+</script>
+<style>
+  * { box-sizing: border-box; }
+  body { font-family: 'Cairo', sans-serif; background: #f7f9fb; }
+  .material-symbols-outlined { font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; }
+  .filled { font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24; }
+
+  /* Hero grid */
+  .hero-grid {
+    background-image: linear-gradient(to right,rgba(0,174,239,.05) 1px,transparent 1px),
+                      linear-gradient(to bottom,rgba(0,174,239,.05) 1px,transparent 1px);
+    background-size: 56px 56px;
+  }
+  /* Scanning line */
+  .scan-wrap { position:relative; overflow:hidden; }
+  .scan-line {
+    position:absolute; width:100%; height:2px;
+    background:linear-gradient(to right,transparent,#00aeef,transparent);
+    top:0; animation:scan 3s linear infinite; opacity:0; z-index:20;
+  }
+  .scan-wrap:focus-within .scan-line { opacity:1; }
+  @keyframes scan { 0%{top:0%} 100%{top:100%} }
+
+  /* Reveal */
+  .reveal { animation: slideUp .5s cubic-bezier(.16,1,.3,1) forwards; }
+  @keyframes slideUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+
+  /* Marquee */
+  .marquee-wrap { overflow:hidden; }
+  .marquee-track { display:flex; gap:64px; white-space:nowrap; animation:marquee 28s linear infinite; width:max-content; }
+  @keyframes marquee { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+  /* Pkg hover */
+  .pkg-card { transition:all .25s; }
+  .pkg-card:hover { transform:translateY(-6px); box-shadow:0 20px 40px rgba(0,174,239,.12); }
+
+  /* Accredit form inputs */
+  .acc-input {
+    width:100%; padding:12px 16px; border-radius:12px;
+    background:rgba(255,255,255,.1); border:1.5px solid rgba(255,255,255,.15);
+    color:#fff; font-family:'Cairo',sans-serif; font-size:14px; outline:none;
+    transition:border-color .2s;
+  }
+  .acc-input:focus { border-color:#C8973A; background:rgba(255,255,255,.15); }
+  .acc-input::placeholder { color:rgba(255,255,255,.35); }
+
+  @media(max-width:768px) {
+    .hide-mob { display:none!important; }
+  }
+</style>
+</head>
+<body class="text-on-surface">
+
+<!-- ══ NAV ══ -->
+<nav class="bg-white/90 backdrop-blur-md sticky top-0 z-50 border-b border-outline-variant h-16 shadow-sm">
+  <div class="max-w-[1100px] mx-auto px-6 h-full flex items-center justify-between">
+    <div class="flex items-center gap-2">
+      <div class="w-9 h-9 rounded-xl bg-primary flex items-center justify-center text-white font-black text-base">ش</div>
+      <span class="font-bold text-lg text-primary tracking-tight">شهادتي العلمية</span>
+    </div>
+    <div class="flex items-center gap-2">
+      <a href="#packages" class="text-on-surface-variant hover:text-primary transition-colors font-semibold text-sm px-3 hide-mob">الباقات</a>
+      <a href="#accredit" class="text-on-surface-variant hover:text-primary transition-colors font-semibold text-sm px-3 hide-mob">اعتمد مؤسستك</a>
+      <a href="admin.html" class="bg-primary text-white px-5 py-2 rounded-xl font-bold text-sm hover:bg-primary-dark transition-all flex items-center gap-1.5 shadow-md">
+        <span class="material-symbols-outlined text-[17px]">account_balance</span>بوابة المؤسسات
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="relative min-h-[580px] flex flex-col items-center justify-center py-16 px-4 bg-white overflow-hidden">
+  <div class="absolute inset-0 hero-grid opacity-60 pointer-events-none"></div>
+  <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(circle at 50% 35%,rgba(173,232,244,.22) 0%,transparent 70%)"></div>
+
+  <div class="relative z-10 text-center max-w-[820px] mx-auto px-4">
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-container border border-primary/20 mb-7">
+      <span class="flex h-2 w-2 relative">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+      </span>
+      <span class="text-primary font-bold text-xs tracking-wide">نظام التحقق الرقمي نشط 24/7</span>
+    </div>
+
+    <h1 class="text-[clamp(36px,6vw,64px)] font-black leading-tight tracking-tighter text-on-surface mb-4">
+      تحقق من أي شهادة<br><span class="text-primary">في ثوانٍ</span>
+    </h1>
+    <p class="text-on-surface-variant text-lg mb-10 max-w-[560px] mx-auto leading-relaxed">
+      منصة رقمية موثوقة تتيح للمؤسسات التعليمية إصدار شهادات معتمدة وللأفراد التحقق منها فورياً
+    </p>
+
+    <!-- Search -->
+    <div class="w-full max-w-2xl mx-auto scan-wrap relative">
+      <div class="absolute -inset-1 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-2xl blur opacity-20 focus-within:opacity-70 transition duration-700"></div>
+      <div class="relative bg-white rounded-2xl p-2 border border-outline-variant focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/5 transition-all duration-400 shadow-xl overflow-hidden scan-wrap">
+        <div class="scan-line"></div>
+        <div class="flex flex-col md:flex-row items-center gap-2 px-2">
+          <div class="flex items-center flex-1 w-full gap-3 px-3 py-2">
+            <span class="material-symbols-outlined text-outline text-[26px]">qr_code_scanner</span>
+            <input id="verifyInput" type="text"
+              placeholder="أدخل رقم الشهادة أو اسم الطالب..."
+              class="w-full bg-transparent border-none focus:ring-0 text-on-surface font-semibold text-base placeholder:text-outline placeholder:font-normal py-3"
+              onkeydown="if(event.key==='Enter')doVerify()"/>
+          </div>
+          <button id="verifyBtn" onclick="doVerify()"
+            class="w-full md:w-auto bg-primary text-white font-black px-8 py-4 rounded-xl flex items-center justify-center gap-2 hover:bg-primary-dark active:scale-95 transition-all shadow-lg text-sm">
+            <span class="material-symbols-outlined filled text-[20px]">verified</span>تحقق الآن
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Result -->
+    <div id="verifyResult" class="hidden mt-8 reveal">
+      <div id="verifyCard" class="max-w-2xl mx-auto bg-white border-2 border-primary/20 rounded-2xl overflow-hidden shadow-2xl text-right"></div>
+    </div>
+
+    <!-- Trust mini stats -->
+    <div class="flex items-center justify-center gap-8 mt-12 flex-wrap">
+      <div class="text-center">
+        <div class="font-black text-2xl text-primary" id="hStatCerts">—</div>
+        <div class="text-xs text-on-surface-variant font-bold uppercase tracking-widest mt-0.5">شهادة معتمدة</div>
+      </div>
+      <div class="w-px h-8 bg-outline-variant"></div>
+      <div class="text-center">
+        <div class="font-black text-2xl text-primary" id="hStatInsts">—</div>
+        <div class="text-xs text-on-surface-variant font-bold uppercase tracking-widest mt-0.5">مؤسسة مسجّلة</div>
+      </div>
+      <div class="w-px h-8 bg-outline-variant"></div>
+      <div class="text-center">
+        <div class="font-black text-2xl text-primary">99.9%</div>
+        <div class="text-xs text-on-surface-variant font-bold uppercase tracking-widest mt-0.5">دقة التحقق</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ MARQUEE ══ -->
+<div class="py-8 bg-surface-card border-y border-outline-variant overflow-hidden">
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <div class="flex items-center gap-2 opacity-40"><span class="material-symbols-outlined text-[28px] text-primary">account_balance</span><span class="font-bold text-on-surface">مركز الاندلس للتدريب</span></div>
+      <div class="flex items-center gap-2 opacity-40"><span class="material-symbols-outlined text-[28px] text-primary">account_balance</span><span class="font-bold text-on-surface">أكاديمية الإسكندرية الطبية</span></div>
+      <div class="flex items-center gap-2 opacity-40"><span class="material-symbols-outlined text-[28px] text-primary">account_balance</span><span class="font-bold text-on-surface">معهد القاهرة التطبيقي</span></div>
+      <div class="flex items-center gap-2 opacity-40"><span class="material-symbols-outlined text-[28px] text-primary">account_balance</span><span class="font-bold text-on-surface">مركز التميز للتدريب</span></div>
+      <div class="flex items-center gap-2 opacity-40"><span class="material-symbols-outlined text-[28px] text-primary">account_balance</span><span class="font-bold text-on-surface">أكاديمية المستقبل</span></div>
+      <div class="flex items-center gap-2 opacity-40"><span class="material-symbols-outlined text-[28px] text-primary">account_balance</span><span class="font-bold text-on-surface">معهد النور التقني</span></div>
+      <!-- duplicate -->
+      <div class="flex items-center gap-2 opacity-40"><span class="material-symbols-outlined text-[28px] text-primary">account_balance</span><span class="font-bold text-on-surface">مركز الاندلس للتدريب</span></div>
+      <div class="flex items-center gap-2 opacity-40"><span class="material-symbols-outlined text-[28px] text-primary">account_balance</span><span class="font-bold text-on-surface">أكاديمية الإسكندرية الطبية</span></div>
+      <div class="flex items-center gap-2 opacity-40"><span class="material-symbols-outlined text-[28px] text-primary">account_balance</span><span class="font-bold text-on-surface">معهد القاهرة التطبيقي</span></div>
+      <div class="flex items-center gap-2 opacity-40"><span class="material-symbols-outlined text-[28px] text-primary">account_balance</span><span class="font-bold text-on-surface">مركز التميز للتدريب</span></div>
+      <div class="flex items-center gap-2 opacity-40"><span class="material-symbols-outlined text-[28px] text-primary">account_balance</span><span class="font-bold text-on-surface">أكاديمية المستقبل</span></div>
+      <div class="flex items-center gap-2 opacity-40"><span class="material-symbols-outlined text-[28px] text-primary">account_balance</span><span class="font-bold text-on-surface">معهد النور التقني</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ HOW IT WORKS ══ -->
+<section class="py-20 bg-surface">
+  <div class="max-w-[1100px] mx-auto px-6">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-black text-on-surface mb-2">كيف يعمل النظام؟</h2>
+      <p class="text-on-surface-variant">ثلاث خطوات بسيطة من الاعتماد حتى التحقق</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="bg-white rounded-2xl p-8 border border-outline-variant text-right hover:border-primary/30 transition-colors shadow-sm">
+        <div class="w-12 h-12 rounded-xl bg-primary flex items-center justify-center text-white font-black text-xl mb-5">١</div>
+        <h3 class="font-bold text-lg text-on-surface mb-2">اعتماد المؤسسة</h3>
+        <p class="text-on-surface-variant text-sm leading-relaxed">تتقدم المؤسسة بطلب اعتماد ويتم مراجعته والموافقة عليه خلال 48 ساعة</p>
+      </div>
+      <div class="bg-white rounded-2xl p-8 border border-outline-variant text-right hover:border-primary/30 transition-colors shadow-sm">
+        <div class="w-12 h-12 rounded-xl bg-primary flex items-center justify-center text-white font-black text-xl mb-5">٢</div>
+        <h3 class="font-bold text-lg text-on-surface mb-2">إصدار الشهادات</h3>
+        <p class="text-on-surface-variant text-sm leading-relaxed">تُصدر المؤسسة شهادات للطلاب يدوياً أو عبر رفع ملف Excel دفعة واحدة</p>
+      </div>
+      <div class="bg-white rounded-2xl p-8 border border-outline-variant text-right hover:border-primary/30 transition-colors shadow-sm">
+        <div class="w-12 h-12 rounded-xl bg-primary flex items-center justify-center text-white font-black text-xl mb-5">٣</div>
+        <h3 class="font-bold text-lg text-on-surface mb-2">التحقق الفوري</h3>
+        <p class="text-on-surface-variant text-sm leading-relaxed">يتحقق أي شخص من أي شهادة برقمها أو اسم الطالب في ثوانٍ معدودة</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PACKAGES ══ -->
+<section class="py-20 bg-white border-t border-outline-variant" id="packages">
+  <div class="max-w-[1100px] mx-auto px-6">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-black text-on-surface mb-2">باقات الاشتراك</h2>
+      <p class="text-on-surface-variant">اختر الباقة المناسبة لحجم مؤسستك</p>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+
+      <!-- عادية -->
+      <div class="pkg-card bg-white rounded-2xl border-2 border-outline-variant p-7 text-center">
+        <div class="text-4xl mb-3">⭐</div>
+        <div class="font-black text-xl text-on-surface mb-1">عادية</div>
+        <div class="text-xs text-on-surface-variant mb-4 font-semibold">حتى 50 شهادة / سنة</div>
+        <div class="text-3xl font-black text-on-surface mb-1">مجاناً</div>
+        <div class="text-xs text-on-surface-variant mb-6">عند الاعتماد</div>
+        <ul class="text-right space-y-2 text-sm text-on-surface-variant">
+          <li class="flex items-center gap-2"><span class="text-success font-black">✓</span>إصدار يدوي</li>
+          <li class="flex items-center gap-2"><span class="text-success font-black">✓</span>صفحة تحقق عامة</li>
+        </ul>
+        <button onclick="document.getElementById('accredit').scrollIntoView({behavior:'smooth'})" class="mt-6 w-full border-2 border-primary text-primary py-2.5 rounded-xl font-bold text-sm hover:bg-primary hover:text-white transition-all">ابدأ مجاناً</button>
+      </div>
+
+      <!-- برونزية -->
+      <div class="pkg-card bg-white rounded-2xl border-2 border-outline-variant p-7 text-center">
+        <div class="text-4xl mb-3">🥉</div>
+        <div class="font-black text-xl text-on-surface mb-1">برونزية</div>
+        <div class="text-xs text-on-surface-variant mb-4 font-semibold">حتى 200 شهادة / سنة</div>
+        <div class="text-3xl font-black text-on-surface mb-1">قريباً</div>
+        <div class="text-xs text-on-surface-variant mb-6">تفاصيل التسعير</div>
+        <ul class="text-right space-y-2 text-sm text-on-surface-variant">
+          <li class="flex items-center gap-2"><span class="text-success font-black">✓</span>إصدار يدوي</li>
+          <li class="flex items-center gap-2"><span class="text-success font-black">✓</span>صفحة تحقق عامة</li>
+          <li class="flex items-center gap-2"><span class="text-success font-black">✓</span>دعم فني</li>
+        </ul>
+        <button class="mt-6 w-full border-2 border-outline-variant text-on-surface-variant py-2.5 rounded-xl font-bold text-sm cursor-default opacity-60">قريباً</button>
+      </div>
+
+      <!-- فضية -->
+      <div class="pkg-card bg-white rounded-2xl border-2 border-outline-variant p-7 text-center">
+        <div class="text-4xl mb-3">🥈</div>
+        <div class="font-black text-xl text-on-surface mb-1">فضية</div>
+        <div class="text-xs text-on-surface-variant mb-4 font-semibold">حتى 500 شهادة / سنة</div>
+        <div class="text-3xl font-black text-on-surface mb-1">قريباً</div>
+        <div class="text-xs text-on-surface-variant mb-6">تفاصيل التسعير</div>
+        <ul class="text-right space-y-2 text-sm text-on-surface-variant">
+          <li class="flex items-center gap-2"><span class="text-success font-black">✓</span>إصدار يدوي + Excel</li>
+          <li class="flex items-center gap-2"><span class="text-success font-black">✓</span>إحصائيات أساسية</li>
+          <li class="flex items-center gap-2"><span class="text-success font-black">✓</span>دعم متقدم</li>
+        </ul>
+        <button class="mt-6 w-full border-2 border-outline-variant text-on-surface-variant py-2.5 rounded-xl font-bold text-sm cursor-default opacity-60">قريباً</button>
+      </div>
+
+      <!-- ذهبية -->
+      <div class="pkg-card bg-white rounded-2xl border-2 border-gold p-7 text-center relative">
+        <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gold text-white text-[10px] font-black px-4 py-1 rounded-full whitespace-nowrap">الأكثر طلباً</div>
+        <div class="text-4xl mb-3">🥇</div>
+        <div class="font-black text-xl text-on-surface mb-1">ذهبية</div>
+        <div class="text-xs text-on-surface-variant mb-4 font-semibold">حتى 2000 شهادة / سنة</div>
+        <div class="text-3xl font-black text-on-surface mb-1">قريباً</div>
+        <div class="text-xs text-on-surface-variant mb-6">تفاصيل التسعير</div>
+        <ul class="text-right space-y-2 text-sm text-on-surface-variant">
+          <li class="flex items-center gap-2"><span class="text-success font-black">✓</span>إصدار يدوي + Excel</li>
+          <li class="flex items-center gap-2"><span class="text-success font-black">✓</span>شعار المؤسسة</li>
+          <li class="flex items-center gap-2"><span class="text-success font-black">✓</span>تقارير تفصيلية</li>
+          <li class="flex items-center gap-2"><span class="text-success font-black">✓</span>دعم أولوية 24/7</li>
+        </ul>
+        <button class="mt-6 w-full border-2 border-outline-variant text-on-surface-variant py-2.5 rounded-xl font-bold text-sm cursor-default opacity-60">قريباً</button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ ACCREDITATION FORM ══ -->
+<section class="py-20" id="accredit" style="background:linear-gradient(135deg,#0B1F3A 0%,#152d52 100%)">
+  <div class="max-w-[600px] mx-auto px-6 text-center">
+    <h2 class="text-3xl font-black text-white mb-2">اعتمد مؤسستك الآن</h2>
+    <p class="text-white/60 text-base mb-10">أرسل طلب الاعتماد وسيتواصل معك فريقنا خلال 48 ساعة</p>
+    <div class="text-right space-y-4" id="accreditForm">
+      <div>
+        <label class="block text-xs font-bold text-white/50 uppercase tracking-wide mb-2">اسم المؤسسة *</label>
+        <input id="accName" type="text" placeholder="مركز / معهد / أكاديمية ..." class="acc-input">
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label class="block text-xs font-bold text-white/50 uppercase tracking-wide mb-2">رقم الهاتف *</label>
+          <input id="accPhone" type="tel" placeholder="01XXXXXXXXX" class="acc-input">
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-white/50 uppercase tracking-wide mb-2">البريد الإلكتروني</label>
+          <input id="accEmail" type="email" placeholder="info@..." class="acc-input">
+        </div>
+      </div>
+      <div>
+        <label class="block text-xs font-bold text-white/50 uppercase tracking-wide mb-2">نوع المؤسسة</label>
+        <select id="accType" class="acc-input">
+          <option value="" class="text-black bg-white">اختر...</option>
+          <option class="text-black bg-white">مركز تدريب</option>
+          <option class="text-black bg-white">معهد تعليمي</option>
+          <option class="text-black bg-white">جامعة / كلية</option>
+          <option class="text-black bg-white">أكاديمية</option>
+          <option class="text-black bg-white">أخرى</option>
+        </select>
+      </div>
+      <button onclick="submitAccreditation()"
+        class="w-full bg-gold text-navy py-4 rounded-xl font-black text-base hover:bg-gold-light active:scale-95 transition-all shadow-lg mt-2">
+        إرسال طلب الاعتماد ←
+      </button>
+    </div>
+    <!-- Success -->
+    <div id="accreditSuccess" class="hidden bg-white/10 border border-white/20 rounded-2xl p-8 text-center">
+      <div class="text-5xl mb-4">✅</div>
+      <div class="font-black text-xl text-white mb-2">تم إرسال الطلب بنجاح!</div>
+      <div class="text-white/60 text-sm">سيتواصل معك فريقنا خلال 48 ساعة على رقم الهاتف المُدخَل</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer class="bg-[#070F1E] text-white/40 py-8 border-t border-white/5">
+  <div class="max-w-[1100px] mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+    <p class="text-sm">© 2025 <span class="text-gold font-bold">شهادتي العلمية</span> — جميع الحقوق محفوظة</p>
+    <div class="flex items-center gap-6 text-sm">
+      <a href="#" class="hover:text-white transition-colors">سياسة الخصوصية</a>
+      <a href="#" class="hover:text-white transition-colors">شروط الخدمة</a>
+      <a href="admin.html" class="hover:text-gold transition-colors">بوابة المؤسسات</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ══ TOAST ══ -->
+<div id="toast" style="position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(80px);background:#0B1F3A;color:#fff;padding:13px 24px;border-radius:12px;font-size:14px;font-weight:700;z-index:9999;transition:transform .3s;max-width:90vw;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,.25)"></div>
+
+<script>
+// ── CONFIG ──
+const SB_URL = 'https://ryxeiauzmicsmkccrqqh.supabase.co';
+const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ5eGVpYXV6bWljc21rY2NycXFoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIwODQwMzUsImV4cCI6MjA5NzY2MDAzNX0.cEQ7ARbJOMcFYj-0g34eLSB9WxqT_l6Uf8_EXyolt68';
+let sb;
+try { sb = supabase.createClient(SB_URL, SB_KEY); } catch(e) {}
+
+// ── TOAST ──
+function toast(msg, ok=true) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.style.borderRight = `4px solid ${ok ? '#0E7C6B' : '#ef4444'}`;
+  t.style.transform = 'translateX(-50%) translateY(0)';
+  setTimeout(() => t.style.transform = 'translateX(-50%) translateY(80px)', 3000);
+}
+
+// ── LOAD STATS ──
+async function loadStats() {
+  try {
+    const [c, i] = await Promise.all([
+      sb.from('certificates').select('id', {count:'exact', head:true}),
+      sb.from('institutions').select('id', {count:'exact', head:true})
+    ]);
+    if (c.count !== null) document.getElementById('hStatCerts').textContent = c.count.toLocaleString('ar');
+    if (i.count !== null) document.getElementById('hStatInsts').textContent = i.count.toLocaleString('ar');
+  } catch(e) {}
+}
+loadStats();
+
+// ── VERIFY ──
+async function doVerify() {
+  const q = document.getElementById('verifyInput').value.trim();
+  const btn = document.getElementById('verifyBtn');
+  const result = document.getElementById('verifyResult');
+  const card = document.getElementById('verifyCard');
+
+  if (q.length < 2) {
+    document.getElementById('verifyInput').classList.add('ring-2','ring-red-400');
+    setTimeout(() => document.getElementById('verifyInput').classList.remove('ring-2','ring-red-400'), 1000);
+    return;
+  }
+
+  btn.innerHTML = '<span class="material-symbols-outlined animate-spin">refresh</span> جاري التحقق...';
+  btn.disabled = true;
+
+  try {
+    const { data } = await sb.from('certificates')
+      .select('*, institutions(name)')
+      .or(`cert_number.eq.${q},student_id.eq.${q},student_name.ilike.%${q}%`)
+      .limit(1);
+
+    result.classList.remove('hidden');
+    result.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+    if (data && data.length > 0) {
+      const c = data[0];
+      const date = c.graduation_date ? new Date(c.graduation_date).toLocaleDateString('ar-EG', {year:'numeric',month:'long',day:'numeric'}) : '—';
+      const inst = c.institutions?.name || '—';
+      const hash = c.blockchain_hash || ('SHD-' + Math.random().toString(36).substr(2,12).toUpperCase());
+      card.innerHTML = `
+        <div class="bg-primary/5 py-4 px-6 border-b border-primary/10 flex items-center justify-between flex-wrap gap-3">
+          <div class="flex items-center gap-3">
+            <div class="bg-primary p-1.5 rounded-full"><span class="material-symbols-outlined filled text-white text-[18px]">check</span></div>
+            <span class="text-primary font-black">تم التحقق بنجاح — مستند أصلي</span>
+          </div>
+          <span class="text-xs text-on-surface-variant">${date}</span>
+        </div>
+        <div class="p-7 space-y-5">
+          <div class="grid grid-cols-2 gap-5">
+            <div><div class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wide mb-1">صاحب الشهادة</div><div class="font-black text-lg text-on-surface">${c.student_name}</div></div>
+            <div><div class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wide mb-1">المؤسسة المانحة</div><div class="font-black text-lg text-on-surface">${inst}</div></div>
+            <div><div class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wide mb-1">البرنامج / التخصص</div><div class="font-bold text-on-surface">${c.major || c.course_name || '—'}</div></div>
+            <div><div class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wide mb-1">التقدير / المعدل</div><div class="font-bold text-on-surface">${c.gpa || c.grade || '—'}</div></div>
+          </div>
+          <div class="bg-surface-container p-4 rounded-xl border border-outline-variant">
+            <div class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wide mb-2">Hash التحقق</div>
+            <div class="font-mono text-[11px] text-primary/80 break-all text-left">${hash}</div>
+          </div>
+          <div class="flex gap-3 flex-wrap">
+            <button onclick="window.print()" class="flex-1 bg-primary text-white font-bold py-3 rounded-xl hover:bg-primary-dark transition-all flex items-center justify-center gap-2 text-sm">
+              <span class="material-symbols-outlined text-[18px]">print</span>طباعة
+            </button>
+            <button onclick="navigator.share({title:'شهادة ${c.student_name}',text:'تم التحقق من شهادة ${c.student_name} عبر منصة شهادتي العلمية',url:window.location.href}).catch(()=>{})" class="flex-1 bg-surface-high text-on-surface font-bold py-3 rounded-xl border border-outline-variant hover:bg-surface-card transition-all flex items-center justify-center gap-2 text-sm">
+              <span class="material-symbols-outlined text-[18px]">share</span>مشاركة
+            </button>
+          </div>
+        </div>`;
+    } else {
+      card.innerHTML = `
+        <div class="p-12 text-center">
+          <div class="text-5xl mb-4">❌</div>
+          <div class="font-black text-xl text-red-500 mb-2">الشهادة غير موجودة</div>
+          <div class="text-on-surface-variant text-sm">تأكد من رقم الشهادة أو اسم الطالب وحاول مرة أخرى</div>
+        </div>`;
+    }
+  } catch(e) {
+    card.innerHTML = `<div class="p-8 text-center text-red-500 font-bold">خطأ في الاتصال بقاعدة البيانات</div>`;
+    result.classList.remove('hidden');
+  }
+
+  btn.innerHTML = '<span class="material-symbols-outlined filled text-[20px]">verified</span>تحقق الآن';
+  btn.disabled = false;
+}
+
+// ── ACCREDITATION ──
+function submitAccreditation() {
+  const name = document.getElementById('accName').value.trim();
+  const phone = document.getElementById('accPhone').value.trim();
+  const email = document.getElementById('accEmail').value.trim();
+  const type = document.getElementById('accType').value;
+  if (!name || !phone) return toast('أدخل اسم المؤسسة ورقم الهاتف', false);
+
+  // Save to localStorage
+  const requests = JSON.parse(localStorage.getItem('accreditations') || '[]');
+  requests.unshift({ name, phone, email, type, date: new Date().toISOString() });
+  localStorage.setItem('accreditations', JSON.stringify(requests));
+
+  document.getElementById('accreditForm').classList.add('hidden');
+  document.getElementById('accreditSuccess').classList.remove('hidden');
+}
+</script>
+</body>
+</html>
